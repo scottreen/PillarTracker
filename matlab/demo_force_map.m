@@ -1,6 +1,6 @@
-% This script deomo to how to create a interpolated force map.
+% This script deomo to how to create an interpolated force map.
 %% load data and metadata from binary file. change the file path if necessary
-[meta, data] = read_pillar_bin('I:\mingxi\casminus_1.3um_2dhex_cell03_R3D\casminus_1.3um_2dhex_cell03_R3D.bin');
+[meta, data] = read_pillar_bin('C:\Users\xiaochun\Desktop\MDA_pillar_10sec_15min__R3D.bin');
 pixel_size = meta.pixel_size;
 
 %% interpolation on specified frame
@@ -11,6 +11,12 @@ d = sqrt(dx.^2 + dy.^2);
 % grid x and y
 x = data.tracksX(frame, :)-dx;
 y = data.tracksY(frame, :)-dy;
+
+% remove NaN
+flags_nan = (isnan(x) | isnan(y)); 
+x = x(~flags_nan);
+y = y(~flags_nan);
+d = d(~flags_nan);
 
 % range of x and y
 xmin = floor(min(x));
