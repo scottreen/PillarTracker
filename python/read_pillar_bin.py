@@ -39,26 +39,21 @@ class PillarTrackerBinReader:
             version = np.fromfile(f, dtype=dt_int, count=1)
             if version == fileversion1 or version == fileversion2:
                 [npillars, nframes] = np.fromfile(f, dtype=dt_int, count=2)
-                # nframes     = np.fromfile(f, dtype=dt_int, count=1)
                 buffer = np.fromfile(f, dtype=dt_double, count=7)
-                header.pixel_size = buffer[0]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.diameter = buffer[1]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.spacing = buffer[2]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.oblique = buffer[3]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.grid_angle = buffer[4]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.sigma_PSF = buffer[5]  # = np.fromfile(f, dtype=dt_double, count=1)
-                header.catch_radius = buffer[6]  # = np.fromfile(f, dtype=dt_double, count=1)
-                [kernel_w, box_limit] = np.fromfile(f, dtype=dt_int, count=2)
-                # kernel_w    = np.fromfile(f, dtype=dt_int, count=1)
-                # box_limit   = np.fromfile(f, dtype=dt_int, count=1)
-                header.kernel_w = kernel_w
-                header.box_limit = box_limit
+                header.pixel_size = buffer[0]
+                header.diameter = buffer[1]
+                header.spacing = buffer[2]
+                header.oblique = buffer[3]
+                header.grid_angle = buffer[4]
+                header.sigma_PSF = buffer[5]
+                header.catch_radius = buffer[6]
+                [header.kernel_w, header.box_limit] = np.fromfile(f, dtype=dt_int, count=2)
 
                 buffer = np.fromfile(f, dtype=dt_int8, count=4)
-                header.dark_pillar = buffer[0]  # np.fromfile(f, dtype=dt_int8, count=1)
-                header.use_minimum_std = buffer[1]  # np.fromfile(f, dtype=dt_int8, count=1)
-                header.use_metric_CG = buffer[2]  # np.fromfile(f, dtype=dt_int8, count=1)
-                use_enhancer = buffer[3]  # np.fromfile(f, dtype=dt_int8, count=1)
+                header.dark_pillar = buffer[0]
+                header.use_minimum_std = buffer[1]
+                header.use_metric_CG = buffer[2]
+                use_enhancer = buffer[3]
                 if version == fileversion2:
                     use_fft = np.fromfile(f, dtype=dt_int8, count=1)
                 else:
@@ -69,16 +64,14 @@ class PillarTrackerBinReader:
                 enhance_loaded_suc = True
                 if use_enhancer > 0:
                     buffer = np.fromfile(f, dtype=dt_int8, count=3)
-                    kernel.normalized_cc = buffer[0]  # np.fromfile(f, dtype=dt_int8, count=1)
-                    kernel.use_gauss_psf = buffer[1]  # np.fromfile(f, dtype=dt_int8, count=1)
-                    kernel.gauss_psf_dark = buffer[2]  # np.fromfile(f, dtype=dt_int8, count=1)
-                    kernel.gauss_psf_radius = np.fromfile(f, dtype=dt_int, count=1)
-                    kernel.gauss_psf_sigma = np.fromfile(f, dtype=dt_double, count=1)
-                    [psf_w, psf_h] = np.fromfile(f, dtype=dt_int, count=1)
+                    kernel.normalized_cc = buffer[0]
+                    kernel.use_gauss_psf = buffer[1]
+                    kernel.gauss_psf_dark = buffer[2]
+                    [kernel.gauss_psf_radius] = np.fromfile(f, dtype=dt_int, count=1)
+                    [kernel.gauss_psf_sigma] = np.fromfile(f, dtype=dt_double, count=1)
+                    [psf_w, psf_h] = np.fromfile(f, dtype=dt_int, count=2)
                     kernel.psf_w = psf_w
                     kernel.psf_h = psf_h
-                    # psf_w = np.fromfile(f, dtype=dt_int, count=1)
-                    # psf_h = np.fromfile(f, dtype=dt_int, count=1)
                     if psf_w > 0 and psf_h > 0:
                         PSF = np.fromfile(f, dtype=dt_double, count=psf_w * psf_h)
                         kernel.PSF = PSF.reshape(psf_h, psf_w)
@@ -106,7 +99,7 @@ class PillarTrackerBinReader:
                     suc_load = True
             elif version % 2 == 0:
                 npillars = version / 2
-                nframes = np.fromfile(f, dtype=dt_int, count=1)
+                [nframes] = np.fromfile(f, dtype=dt_int, count=1)
                 suc_load = True
             # check whether the file header is loaded successfully.
             if suc_load and npillars > 0 and nframes > 0:
