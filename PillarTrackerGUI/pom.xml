@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.imagej</groupId>
+        <artifactId>pom-imagej</artifactId>
+        <version>15.4.0</version>
+    </parent>
+    
+    <groupId>com.nus.mbi.pillar</groupId>
+    <artifactId>Pillar_Tracker_GUI</artifactId>
+    <version>1.1.6-SNAPSHOT</version>
+        
+    <name>Pillar_Tracker_GUI</name>
+    <description>The GUI for Pillar Tracker.
+Developer: Xiaochun XU (mbixxc@nus.edu.sg)</description>
+    
+    <licenses>
+        <license>
+            <name>GPL-3.0 License</name>            
+            <url>https://choosealicense.com/licenses/gpl-3.0/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <id>Mbixxc</id>
+            <name>Xiaochun Xu</name>
+            <url>http://imagej.net/User:Mbixxc</url>
+            <email>xuxiaochun27@gmail.com</email>            
+            <organization>Mechanobiology Institute</organization>
+            <organizationUrl>http://mbi.nus.edu.sg/</organizationUrl>
+            <roles>
+                <role>founder</role>
+                <role>lead</role>
+                <role>developer</role>
+                <role>debugger</role>
+                <role>reviewer</role>
+                <role>support</role>
+                <role>maintainer</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
+    <contributors>
+        <!--
+        NB: Need a least one element to override the parent.
+        See: https://issues.apache.org/jira/browse/MNG-5220
+        -->
+        <contributor>
+            <name>None</name>
+        </contributor>
+    </contributors>    
+    
+    <dependencies>        
+        <!--ImageJ-->               
+        <dependency>
+            <groupId>net.imagej</groupId>
+            <artifactId>ij</artifactId>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/sc.fiji/fiji-lib -->
+        <dependency>
+            <groupId>sc.fiji</groupId>
+            <artifactId>fiji-lib</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+          
+        <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+    </dependencies>    
+ 
+    <build>                
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.png</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>plugins.config</include>                                     
+                </includes>
+            </resource>  
+            <resource>                
+                <directory>src/main/lib</directory>
+                <includes>
+                    <include>*.dll</include>
+                    <include>*.dylib</include>
+                </includes>  
+            </resource>
+            <!--  copy the lib folder -->
+            <resource>
+                <targetPath>lib</targetPath>
+                <directory>src/main/lib</directory>
+                <filtering>false</filtering>
+            </resource>                             
+        </resources>
+    </build>
+  
+</project>
