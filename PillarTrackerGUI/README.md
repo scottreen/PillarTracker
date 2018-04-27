@@ -1,6 +1,6 @@
 # Java Source Code of PillarTracker
 
-This directory contains the source code (a Maven project) for the `PillarTracker` package, which implement algorithms and GUI (Graphic User Interface).
+This directory contains the source code (a Maven project) for the `PillarTracker` package, which implement algorithms and GUI (Graphic User Interface). This project can be directly loaded with [NetBeans IDE](https://netbeans.org/).
 
 ## Acknowledgement
 This work is funded by [Mechanobiology Institute,Singapore](https://mbi.nus.edu.sg/).
