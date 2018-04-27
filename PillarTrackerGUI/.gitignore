@@ -1,0 +1,16 @@
+## Maven ##
+/target/
+
+## Eclipse ##
+/.classpath
+/.project
+/.settings/
+
+## vim ##
+*.swp
+
+## Interactive tests ##
+/samples/
+
+## MacOSX
+.DS_Store

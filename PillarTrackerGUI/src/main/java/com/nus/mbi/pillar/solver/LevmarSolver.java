@@ -3,7 +3,7 @@ package com.nus.mbi.pillar.solver;
 import com.nus.mbi.pillar.tracker.LocalizationWindow;
 
 /**
- * rewrite the lev-mar algorithm as following cite
+ * rewrite the lev-mar algorithm as following cite, under GPL license
  * @misc{lourakis04LM,
     author={M.I.A. Lourakis},
     title={levmar: Levenberg-Marquardt nonlinear least squares algorithms in {C}/{C}++},

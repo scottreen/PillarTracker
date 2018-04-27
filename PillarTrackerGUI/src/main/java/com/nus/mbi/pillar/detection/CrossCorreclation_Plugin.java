@@ -94,13 +94,6 @@ public class CrossCorreclation_Plugin implements PlugIn{
         if(num_threads>0) this.num_threads = num_threads;
     }
     
-    
-//    public void CopyFrom(CrossCorreclation_Plugin image_enhancer_plugin){
-//        setup(ip, image_enhancer_plugin.getMode() ,true);
-//        boolean use_gaussian = image_enhancer_plugin.isUsingGaussianPSF();
-//        if(use_gaussian) setGaussianPSF(image_enhancer_plugin.getGaussianSigma(), image_enhancer_plugin.getGaussianRaidus(), image_enhancer_plugin.isDarkObject());
-//        else setCustomPSF(image_enhancer_plugin.getPSF());
-//    }
     public boolean getMode(){
         return mode_cc;
     }
@@ -153,17 +146,7 @@ public class CrossCorreclation_Plugin implements PlugIn{
                 return;
             }
         }
-        
-//        if(!mode_cc){
-//            //MinimumErrorSolver amp_solver = new MinimumErrorSolver();                          
-//            if(use_gaussian_psf) psf_ip = amp_solver.setGaussianKernel(kernel_radius, sigma, dark);
-//            else amp_solver.setPSF(psf_ip.getProcessor());           
-//        }
-//        else{
-//            //CrossCorrelation cc = new CrossCorrelation();
-//            if(use_gaussian_psf) psf_ip = cc.setGaussianKernel(kernel_radius, sigma, dark);
-//            else cc.setPSFKernel(psf_ip.getProcessor());            
-//        }
+
         setKernel();
                 
         
@@ -329,15 +312,7 @@ public class CrossCorreclation_Plugin implements PlugIn{
             if(mode_cc) cc.setPSFKernel(psf_ip.getProcessor());  
             else amp_solver.setPSF(psf_ip.getProcessor());  
         }
-        
-//        if(!mode_cc){
-//            if(use_gaussian_psf) psf_ip = amp_solver.setGaussianKernel(kernel_radius, sigma, dark);                            
-//            else amp_solver.setPSF(psf_ip.getProcessor());                                   
-//        }
-//        else{            
-//            if(use_gaussian_psf) psf_ip = cc.setGaussianKernel(kernel_radius, sigma, dark);
-//            else cc.setPSFKernel(psf_ip.getProcessor());            
-//        }
+
         if(gpu_on && psf_ip!=null){
             gpu_on=PillarTrackerGPULibrary.check_psf_size(psf_ip.getWidth(), psf_ip.getHeight());
             if(gpu_on) gpu_lib.setKernel(psf_ip.getProcessor());
@@ -364,11 +339,6 @@ public class CrossCorreclation_Plugin implements PlugIn{
         float[] img = mode_cc ? cc.process(pixels,width, height,num_threads) : amp_solver.MinimumError_AMP(pixels, width, height, num_threads);        
         return img;
     }
-    
-//    public ImageProcessor process(ImageProcessor ip, int num_threads){
-//        ImageProcessor img = mode_cc ? cc.process(ip, num_threads) : amp_solver.MinimumError_AMP(ip, num_threads);        
-//        return img;
-//    }
     
     public boolean showSetKernelDialog() {	
 	int[] wList = WindowManager.getIDList();
@@ -452,8 +422,6 @@ public class CrossCorreclation_Plugin implements PlugIn{
         IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-1_PSF.tif");
         //IJ.log(clazz.getName());         
         IJ.runPlugIn(clazz.getName(), "AMP");
-
-        //GSD_Measurement_JFrame ex = new GSD_Measurement_JFrame();
     }
     
 }

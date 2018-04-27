@@ -272,29 +272,6 @@ public class HighPassFFT implements  PlugIn, Measurements, DialogListener  {
         IJ.showProgress(1.0);
     }
     
-//    public FDResult process_frame(ImageProcessor img, FHT reference_fht, int off_center_radius){        
-//        FHT fht = newFHT(img);        
-//        fht.setShowProgress(false);
-//        ImagePlus fft_ip = doForwardTransform(fht); 
-//        FHT fft_img = GetOffCenterMaskedFHT(fht, off_center_radius);
-//        //FHT first_fft_img = GetOffCenterMaskedFHT(reference_fht, off_center_radius);            
-//                           
-//        FHT phase_fht = fht.conjugateMultiply(reference_fht); 
-//        phase_fht.originalWidth = img.getWidth();
-//        phase_fht.originalHeight = img.getHeight();
-//        
-//        ImageStack re_im = phase_fht.getComplexTransform();
-//        float[] re = (float[])re_im.getProcessor(1).getPixels();
-//        float[] im = (float[])re_im.getProcessor(2).getPixels();
-//        int img_size = re_im.getWidth()*re_im.getHeight();
-//        float[] phase = new float[img_size];
-//        for(int i=0; i<img_size; i++) phase[i] = (float)Math.atan2(im[i], re[i]);        
-//        FloatProcessor phase_img = new FloatProcessor(re_im.getWidth(), re_im.getHeight(), phase);
-//                
-//        ImageProcessor ifft_img = doInverseTransform(fft_img);
-//        return new FDResult(fht, phase_img, ifft_img);
-//    }
-    
     public FDResult process_frame(ImageProcessor img, FHT reference_fht, int off_center_radius){        
         FHT fht = forward_transform(img); 
         FHT fht_mask = GetOffCenterMaskedFHT(fht, off_center_radius);    

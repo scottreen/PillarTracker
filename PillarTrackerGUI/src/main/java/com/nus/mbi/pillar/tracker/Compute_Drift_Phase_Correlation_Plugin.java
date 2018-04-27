@@ -319,8 +319,6 @@ public class Compute_Drift_Phase_Correlation_Plugin implements PlugIn{
         IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-1.tif");        
         //IJ.log(clazz.getName());         
         IJ.runPlugIn(clazz.getName(), "");
-
-        //GSD_Measurement_JFrame ex = new GSD_Measurement_JFrame();
     }
     
 }

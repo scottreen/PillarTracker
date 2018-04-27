@@ -4277,7 +4277,7 @@ public class RootLayoutController implements Initializable {
             }     
        });       
        link_mbi.setVisible(true);       
-       link_copyright.setText("Fork Us on Github");
+       link_copyright.setText("Source Code on Github");
        link_copyright.setOnAction((ActionEvent e)->{
             if (Desktop.isDesktopSupported()) {
                     try {

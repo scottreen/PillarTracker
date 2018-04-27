@@ -16,9 +16,6 @@ import com.nus.mbi.pillar.stat.StatisitcCenterDistance;
  * @author xiaochun
  */
 public class DriftDataLoader {
-    	
-//input file->E:\Yangbo\2015-06-25\75fps_cell2_dish2_large-output\\75fps_cell2_dish2_large_X11-pillar-tracks-big.bin
-//String tracks_file = "E:\\Yangbolix\\2015-06-25\\75fps_cell2_dish2_large-output\\75fps_cell2_dish2_large_X11-pillar-tracks-big.bin";
 
 // image and pillar params
 public double pixel_size = 1.0; // pixel size in nm
