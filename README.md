@@ -1,19 +1,11 @@
-# PillarTracker extensions for more productivity
+# PillarTracker
 
-There are several Matlab scripts in the folder 'matlab/'
+Welcome to **PillarTacker**. This plugin of [Fiji/ImageJ](http://fiji.sc/) enables user to track pillars with drift correction and visualize the trajectories and deflections. To make it more productivity, some demo scripts in Matlab and Python are provided here as well.
 
-1). read_pillar_bin.m
+## Installation
+To install PillarTracker, use the Fiji's updater(Help->Update...) and activate the `PillarTracker` checkbox in `Manage update sites`. 
 
-    the function to load the binary file into Matlab workspace. 
+## [Documentation](https://drive.google.com/file/d/0B3hxvkn3VvhCVWJsdUN3eDUyNkk)
 
-2). demo_force_map.m
-    
-    demo how to caluculate the force dependent on the deflections, and generate an interpolated force map.
 
-3). demo_find_peak_deflection.m   
 
-    demo how to perform the peak analysis for the deflections. e.g. find the maximum peaks or peak width.
-
-4). demo_subset_ROI.m
-    
-    demo how to load partial pillars with region of interest(ROI) and compute the force. 
