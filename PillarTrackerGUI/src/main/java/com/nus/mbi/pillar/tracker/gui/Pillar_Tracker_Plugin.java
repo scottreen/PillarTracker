@@ -51,12 +51,6 @@ public class Pillar_Tracker_Plugin implements PlugIn {
         new ImageJ();        
         //IJ.log(clazz.getName()); 
         IJ.runPlugIn(clazz.getName(), "debug");    
-        
-//        SwingUtilities.invokeLater(new Runnable() {
-//                @Override public void run() {                    
-//                                       
-//             }
-//        });   
     }
     
 }

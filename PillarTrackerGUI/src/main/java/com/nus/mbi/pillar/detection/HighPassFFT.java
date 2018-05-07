@@ -120,7 +120,8 @@ public class HighPassFFT implements  PlugIn, Measurements, DialogListener  {
         }
         
         if(imp.getStackSize()<2) process_all_frames = false;
-        if(!showDialog(imp)) return;         
+        MaskFilterDialogResults rst = showProcessDialog(imp);
+        if(!rst.dialog_return) return;         
         
         if(!process_all_frames){
             if(use_phase_correlation){
@@ -133,7 +134,8 @@ public class HighPassFFT implements  PlugIn, Measurements, DialogListener  {
                 first_frame_fht = phase_shift(first_frame_fht, -xc, -yc);
             }
             boolean has_off_center_mask = hasOffCenterPoints();//FFT_Overlay.size()>0;
-            if(has_off_center_mask) process_current_frame(off_center_radius, end_radius_off_center, step_radius_off_center);
+            //if(has_off_center_mask) process_current_frame(off_center_radius, end_radius_off_center, step_radius_off_center);
+            if(has_off_center_mask) process_current_frame(rst.radius_start, rst.radius_end, rst.radius_step);            
             else process_current_frame();
             return;
         }
@@ -960,45 +962,60 @@ ImageProcessor doInverseTransform(FHT fht, boolean convert_bitDepth) {
        return (!gd.invalidNumber());
     } // public boolean DialogItemChanged
     
-    public boolean showDialog(ImagePlus ip){                
+    public MaskFilterDialogResults showProcessDialog(ImagePlus ip){                
         boolean has_off_center_mask = hasOffCenterPoints();
         boolean has_one_frame = (ip.getStackSize()==1);
         //if(has_one_frame && !has_off_center_mask) return true;
+        MaskFilterDialogResults result = new MaskFilterDialogResults();
+        result.dialog_return = false;
         
-        GenericDialog gd = new GenericDialog("Settings for Mask Filter");        
+        GenericDialog gd = new GenericDialog("Process with Fourier Mask Filter");        
+        gd.addMessage("Current radius of off-center mask: " + off_center_radius);
         if(!has_one_frame) gd.addCheckbox("Process all frames?", false);
           
         //gd.addCheckbox("show phase correlation with the 1st frame?", false);
         if(has_off_center_mask){
-            gd.addMessage("----Iterate the radius of off-center mask only if processing current frame");
-            gd.addMessage("     starting from:" + off_center_radius);
-            gd.addNumericField("    step_radius:", 1, 0, 10, ">0");
-            gd.addNumericField("    end_radius:", off_center_radius, 0, 10, ">"+off_center_radius);
+            gd.addMessage("----Iterate the radius of off-center mask ONLY if processing current frame");
+            gd.addNumericField("    start_radius:", off_center_radius, 0, 10, ">0");            
+            gd.addNumericField("    end_radius:", end_radius_off_center, 0, 10, ">0");
+            gd.addNumericField("    step_radius:", step_radius_off_center, 0, 10, ">0");
         }
         gd.showDialog();
-        if (gd.wasCanceled()) return false;        
+        if (gd.wasCanceled()) return result;
         
         if(!has_one_frame) process_all_frames = gd.getNextBoolean();                    
         
         //use_phase_correlation = gd.getNextBoolean();
-        if(process_all_frames) return true;
+        if(process_all_frames){
+            result.dialog_return = true;
+            return result;
+        }
         
-        if(has_off_center_mask){
+        if(has_off_center_mask){            
             int start_radius=(int)gd.getNextNumber();
             int end_radius=(int)gd.getNextNumber();
+            int step_raiuds = (int)gd.getNextNumber();
             if(start_radius<1) {
                 IJ.showMessage("the start radius must be larger than 0");
-                return false;
+                return result;
             }
 
             if(end_radius<start_radius) {
                 IJ.showMessage("the end radius must be larger than start radius");
-                return false;
+                return result;
             }
-
-            step_radius_off_center = start_radius;
-            end_radius_off_center = end_radius;
+            
+            if(step_raiuds<1) {
+                IJ.showMessage("the step radius must be larger than 0");
+                return result;
+            }
+            
+            result.setRaiuds(start_radius, end_radius, step_raiuds);
+            //step_radius_off_center = start_radius;
+            //end_radius_off_center = end_radius;
         }
-        return true;
+        
+        result.dialog_return = true;
+        return result;
     }
 }

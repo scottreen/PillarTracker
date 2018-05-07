@@ -971,13 +971,4 @@ boolean showDialog() {
 	
 	return true;
 }
-
-    public static void main(String[] args) throws Exception{
-            Class<?> clazz = pillar_tracking_FD.class;        
-            //lunch ImageJ
-            new ImageJ();      
-            IJ.open("C:\\Users\\xiaochun\\Desktop\\MDA_pillar_10sec_15min__R3D.tif");
-            //IJ.log(clazz.getName());         
-            IJ.runPlugIn(clazz.getName(), "");
-        }
 }

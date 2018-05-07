@@ -291,19 +291,6 @@ public class PSF_Extraction_Plugin implements PlugIn{
         show_shift_img = gd.getNextBoolean();
 	return true;
     }
-    
-        
-    public static void main(String[] args) throws Exception{
-        Class<?> clazz = PSF_Extraction_Plugin.class;        
-        //lunch ImageJ
-        new ImageJ();        
-        IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-1.tif");
-        IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-1.tif.cent.roi");
-        //IJ.log(clazz.getName());         
-        IJ.runPlugIn(clazz.getName(), "");
 
-        //GSD_Measurement_JFrame ex = new GSD_Measurement_JFrame();
-    }
-    
 }
 

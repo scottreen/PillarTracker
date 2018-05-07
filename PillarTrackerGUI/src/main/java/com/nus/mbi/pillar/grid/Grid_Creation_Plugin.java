@@ -5,7 +5,6 @@ import ij.plugin.PlugIn;
 import fiji.util.gui.*;
 //import static com.nus.mbi.pillar.grid.GridDataLoader.*;
 import ij.IJ;
-import ij.ImageJ;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -931,15 +930,5 @@ public class Grid_Creation_Plugin implements PlugIn{
                 IJ.log("IOException - writing failed  : " + ioe);
         }				
         
-    }
-     
-    public static void main(String[] args) throws Exception{
-        Class<?> clazz = Grid_Creation_Plugin.class;        
-        //lunch ImageJ
-        new ImageJ();        
-        //IJ.log(clazz.getName());         
-        IJ.runPlugIn(clazz.getName(), "");
-
-        //GSD_Measurement_JFrame ex = new GSD_Measurement_JFrame();
     }
 }

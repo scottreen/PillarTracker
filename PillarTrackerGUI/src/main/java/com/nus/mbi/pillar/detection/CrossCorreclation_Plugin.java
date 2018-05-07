@@ -413,15 +413,5 @@ public class CrossCorreclation_Plugin implements PlugIn{
         setKernel();        
 	return true;
     }
-        
-    public static void main(String[] args) throws Exception{
-        Class<?> clazz = CrossCorreclation_Plugin.class;        
-        //lunch ImageJ
-        new ImageJ();        
-        IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-2.tif");
-        IJ.open("I:\\felix\\pillars\\positive_2K_fpsB_C001H001S0001-1_PSF.tif");
-        //IJ.log(clazz.getName());         
-        IJ.runPlugIn(clazz.getName(), "AMP");
-    }
-    
+
 }

@@ -195,14 +195,6 @@ public void run(String arg) {
 		process();
 	}
 
-public static void main(String[] args) throws Exception{
-    	Class<?> clazz = pillar_detector_match_filter.class;        
-        //lunch ImageJ
-        new ImageJ();        
-        IJ.open("C:\\Users\\xiaochun\\Desktop\\MDA_pillar_10sec_15min__R3D.tif");
-        //IJ.log(clazz.getName());         
-        IJ.runPlugIn(clazz.getName(), "");
-    }
 
 boolean showDialog() {
 	int[] wList = WindowManager.getIDList();
