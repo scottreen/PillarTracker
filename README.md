@@ -6,6 +6,6 @@ Welcome to **PillarTacker**. This plugin of [Fiji/ImageJ](http://fiji.sc/) enabl
 To install [PillarTracker](http://imagej.net/PillarTracker), use the Fiji's updater(Help->Update...) and activate the `PillarTracker` checkbox in `Manage update sites`. 
 
 ## [Documentation](https://drive.google.com/file/d/0B3hxvkn3VvhCVWJsdUN3eDUyNkk)
-
+see [documentation.docx](documendation_v3.docx)
 
 
